@@ -133,6 +133,7 @@ terrible
 unable
 weak
 wooden
+beamed
 asleep
 confident
 conscious

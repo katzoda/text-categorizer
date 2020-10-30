@@ -62,6 +62,15 @@ with open(input_file, mode='r') as text:
 words= []
 numbers = []
 
+def word_constructor(i, word):
+    if i == 0:
+        rec = word[1:]
+    elif i == len(word) - 1:
+        rec = word[:-1]
+    else:
+        rec = word[:i] + word[i+1:]
+    return rec
+
 
 for word in text_words:
     # Count how many spec char and num_chars in individual words
@@ -92,14 +101,8 @@ for word in text_words:
         while c > 0:
             for i, letter in enumerate(word):
                 if letter in spec_chars:
-
                     # The special char is either at beginning or in the middle or at the end of the word
-                    if i == 0:
-                        word_rec = word[1:]
-                    elif i == len(word) - 1:
-                        word_rec = word[:-1]
-                    else:
-                        word_rec = word[:i] + word[i+1:]
+                    word_rec = word_constructor(i, word)
 
             c -= 1
 
@@ -133,12 +136,7 @@ for word in text_words:
                             dot_index = i 
                 for i, num in enumerate(word):
                     if num in spec_chars:
-                        if i == 0:
-                            num_rec = word[1:]
-                        elif i == len(word) - 1:
-                            num_rec = word[:-1]
-                        else:
-                            num_rec = word[:i] + word[i+1:]
+                        num_rec = word_constructor(i, word)
 
                 word = num_rec
                 c1 -= 1
@@ -157,12 +155,7 @@ for word in text_words:
             while c2 > 0:
                 for i, num in enumerate(word):
                     if num in spec_chars:
-                        if i == 0:
-                            num_rec = word[1:]
-                        elif i == len(word) - 1:
-                            num_rec = word[:-1]
-                        else:
-                            num_rec = word[:i] + word[i+1:]
+                        num_rec = word_constructor(i, word)
 
                 c2 -= 1
 
